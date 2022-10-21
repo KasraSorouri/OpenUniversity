@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg baseProfile="tiny" height="1470.075376884422" version="1.2" viewBox="0 0 1039.4472361809044 1470.075376884422" width="1039.4472361809044" xmlns="http://www.w3.org/2000/svg">
+  <text fill="black" font-family="sans-serif" font-size="20" font-weight="bold" x="465.2005061112855" y="156.00486809045208">
+    New Note  </text>
+  <path d="M-536,-494.56250000000006 L-536,0" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="77" x="259.2236180904522" y="178.2236180904522"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="270.59210767378545" y="199.7132014237853">
+    browser  </text>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="77" x="259.2236180904522" y="705.2236180904522"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="270.59210767378545" y="726.3173680904522">
+    browser  </text>
+  <path d="M33,-494.56250000000006 L33,0" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="65" x="833.2236180904522" y="178.2236180904522"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="844.7275243404522" y="199.7132014237853">
+    server  </text>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="65" x="833.2236180904522" y="705.2236180904522"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="844.7275243404522" y="726.3173680904522">
+    server  </text>
+  <rect fill="white" height="15.333333333333314" width="415.95703124999994" x="373.6428889237855" y="223.9944514237854"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="373.6428889237855" y="237.32778475711874">
+    HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note  </text>
+  <path d="M-535.3118489583334,-465 L32.107421875,-465" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M32,-465 L32,-465 L24,-473 L24,-465 L24,-457 L32,-465" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333314" width="132.6953125" x="515.2737482987854" y="253.84861809045208"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="515.2737482987854" y="267.1819514237854">
+    Response Code 302  </text>
+  <path d="M-535.3118489583334,-435 L32.107421875,-435" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-535,-435 L-535,-435 L-527,-443 L-527,-435 L-527,-427 L-535,-435" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-697,-422 L-697,-422 L-383,-422 L-375,-414 L-375,-374 L-697,-374 L-697,-422" fill="white" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-382.70833333333337,-421.5208333333334 L-382.70833333333337,-413.5208333333334 L-374.70833333333337,-413.5208333333334" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="142.06020663211882" y="304.79653475711876">
+    redirect to:  </text>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="142.06020663211882" y="320.3173680904521">
+    https://studies.cs.helsinki.fi/exampleapp/notes  </text>
+  <rect fill="white" height="15.333333333333314" width="380.43619791666674" x="391.4033055904522" y="344.5986180904521"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="391.4033055904522" y="357.9319514237854">
+    HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes  </text>
+  <path d="M-535.3118489583334,-344 L32.107421875,-344" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M32,-344 L32,-344 L24,-352 L24,-344 L24,-336 L32,-344" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333314" width="75.47526041666674" x="543.8837743404522" y="374.45278475711876"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="543.8837743404522" y="387.7861180904521">
+    HTML Code  </text>
+  <path d="M-535.3118489583334,-314 L32.107421875,-314" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-535,-314 L-535,-314 L-527,-322 L-527,-314 L-527,-306 L-535,-314" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333314" width="402.22656249999994" x="380.5081232987855" y="404.30695142378545"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="380.5081232987855" y="417.64028475711876">
+    HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css  </text>
+  <path d="M-535.3118489583334,-284 L32.107421875,-284" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M32,-284 L32,-284 L24,-292 L24,-284 L24,-276 L32,-284" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333314" width="58.77604166666674" x="552.2333837154522" y="434.16111809045213"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="552.2333837154522" y="447.49445142378545">
+    main.css  </text>
+  <path d="M-535.3118489583334,-255 L32.107421875,-255" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-535,-255 L-535,-255 L-527,-263 L-527,-255 L-527,-247 L-535,-255" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333371" width="391.65364583333337" x="385.7945816321188" y="464.0152847571188"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="385.7945816321188" y="477.34861809045213">
+    HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js  </text>
+  <path d="M-535.3118489583334,-225 L32.107421875,-225" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M32,-225 L32,-225 L24,-233 L24,-225 L24,-217 L32,-225" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333371" width="48.203125" x="557.5198420487854" y="493.86945142378545"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="557.5198420487854" y="507.20278475711876">
+    main.js  </text>
+  <path d="M-535.3118489583334,-195 L32.107421875,-195" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-535,-195 L-535,-195 L-527,-203 L-527,-195 L-527,-187 L-535,-195" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-663,-182 L-663,-182 L-417,-182 L-409,-174 L-409,-134 L-663,-134 L-663,-182" fill="white" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-416.75130208333337,-181.5 L-416.75130208333337,-173.5 L-408.75130208333337,-173.5" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="176.10317538211882" y="544.8173680904522">
+    browser starts executing js-code  </text>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="176.10317538211882" y="560.3382014237856">
+    that requests JSON data from server  </text>
+  <rect fill="white" height="15.333333333333371" width="404.98046874999994" x="379.1311701737855" y="584.6194514237854"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="379.1311701737855" y="597.9527847571188">
+    HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json  </text>
+  <path d="M-535.3118489583334,-104 L32.107421875,-104" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M32,-104 L32,-104 L24,-112 L24,-104 L24,-96 L32,-104" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <rect fill="white" height="15.333333333333258" width="539.9153645833334" x="311.6637222571188" y="614.4736180904522"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="311.6637222571188" y="627.8069514237856">
+    [{&#34;content&#34;:&#34;I&#39;m Suresh from India!!!&#34;,&#34;date&#34;:&#34;2022-10-21T07:18:49.944Z&#34;},...}]  </text>
+  <path d="M-535.3118489583334,-74 L32.107421875,-74" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-535,-74 L-535,-74 L-527,-82 L-527,-74 L-527,-66 L-535,-74" fill="black" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-662,-61 L-662,-61 L-417,-61 L-409,-53 L-409,-13 L-662,-13 L-662,-61" fill="white" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <path d="M-417.14518229166663,-60.89583333333337 L-417.14518229166663,-52.89583333333337 L-409.14518229166663,-52.89583333333337" fill="none" stroke="black" stroke-width="1" transform="translate(833.2236180904522 705.2236180904522)"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="176.4970555904522" y="665.4215347571189">
+    browser executes the event handler  </text>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="176.4970555904522" y="680.9423680904522">
+    that renders notes to display  </text>
+  <text fill="black" font-family="Arial" font-size="14" x="695.7711441321188" y="762.0048680904521">
+    www.websequencediagrams.com  </text>
+</svg>

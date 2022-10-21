@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg baseProfile="tiny" height="1173.4484924623114" version="1.2" viewBox="0 0 829.7110552763818 1173.4484924623114" width="829.7110552763818" xmlns="http://www.w3.org/2000/svg">
+  <text fill="black" font-family="sans-serif" font-size="20" font-weight="bold" x="395.8444599298575" y="131.26177763819095">
+    spa  </text>
+  <path d="M-412,-133.9375 L-412,0" fill="none" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="77" x="199.8555276381909" y="153.85552763819095"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="211.18235055485752" y="174.97011097152432">
+    browser  </text>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="77" x="199.8555276381909" y="319.85552763819095"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="211.18235055485752" y="340.94927763819095">
+    browser  </text>
+  <path d="M33,-133.9375 L33,0" fill="none" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="65" x="649.8555276381909" y="153.85552763819095"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="661.3594338881909" y="174.97011097152432">
+    server  </text>
+  <rect fill="white" height="32" stroke="black" stroke-width="1" width="65" x="649.8555276381909" y="319.85552763819095"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="661.3594338881909" y="340.94927763819095">
+    server  </text>
+  <rect fill="white" height="15.333333333333314" width="415.95703125" x="252.2539651381909" y="199.25136097152426"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="252.2539651381909" y="212.5846943048576">
+    HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note  </text>
+  <path d="M-411.353515625,-104 L32.107421875,-104" fill="none" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <path d="M32,-104 L32,-104 L24,-112 L24,-104 L24,-96 L32,-104" fill="black" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <rect fill="white" height="15.333333333333314" width="328.203125" x="296.1309182631909" y="229.10552763819095"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="296.1309182631909" y="242.4388609715243">
+    Response Code 201 {&#34;message&#34;:&#34;note created&#34;}  </text>
+  <path d="M-411.353515625,-74 L32.107421875,-74" fill="none" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <path d="M-411,-74 L-411,-74 L-403,-82 L-403,-74 L-403,-66 L-411,-74" fill="black" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <path d="M-539,-61 L-539,-61 L-293,-61 L-285,-53 L-285,-13 L-539,-13 L-539,-61" fill="white" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <path d="M-293.18684895833326,-60.895833333333314 L-293.18684895833326,-52.895833333333314 L-285.18684895833326,-52.895833333333314" fill="none" stroke="black" stroke-width="1" transform="translate(649.8555276381909 319.85552763819095)"/>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="117.08729847152426" y="280.0534443048576">
+    browser executes the event handler  </text>
+  <text fill="black" font-family="sans-serif" font-size="13.333333333333334" x="117.08729847152426" y="295.57427763819095">
+    that renders notes to display  </text>
+  <text fill="black" font-family="Arial" font-size="14" x="511.79823597152426" y="376.26177763819095">
+    www.websequencediagrams.com  </text>
+</svg>
