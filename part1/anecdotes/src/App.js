@@ -26,14 +26,22 @@ const App = () => {
     newPoint[selected] += 1
     setPoint(newPoint)
   }
-  console.log(points)
+  console.log("points -> ", points)
+
+  let maxVote = Math.max(...points);
+  let popular = points.findIndex(e => e === maxVote)
+  console.log("max vote: ", maxVote, "  popular: ", popular)
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <p>Has {points[selected]} {(points[selected] < 2)? "vote":"votes"}</p>
       <button onClick={vote} >Vote</button>
       <button onClick={changeAnecdotes} >Next anecdote</button>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[popular]}
+      <p>Has {points[popular]} {(points[popular] < 2)? "vote":"votes"}</p>
     </div>
   )
 }
