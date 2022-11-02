@@ -13,13 +13,17 @@ const App = () => {
 
     const addNewPerson = (event) => {
       event.preventDefault();
-
-      const newPerson = {
-        name: newName
+      
+      if (persons.find(person => person.name === newName)) {
+        console.log('find');
+        alert(`${newName} is already add to the phonebood`)
+      } else { 
+          const newPerson = {
+          name: newName
+        }
+        setPersons(persons.concat(newPerson));
+        setNewName('');
       }
-
-      setPersons(persons.concat(newPerson));
-      setNewName('');
     }
 
     return (
