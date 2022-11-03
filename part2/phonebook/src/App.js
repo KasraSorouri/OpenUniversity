@@ -3,9 +3,11 @@ import { useState } from 'react'
 const App = () => {
   
     const [persons, setPersons] = useState([
-      { name: 'Arto Hellas' }
+      { name: 'Arto Hellas',
+        number: '040-1234567'}
     ]) 
     const [newName, setNewName] = useState('')
+    const [newNumber, setNewNumber] = useState('')
   
     const handelNameChange = (event) => {
       setNewName(event.target.value)
@@ -19,11 +21,18 @@ const App = () => {
         alert(`${newName} is already add to the phonebood`)
       } else { 
           const newPerson = {
-          name: newName
+          name: newName,
+          number: newNumber
+
         }
         setPersons(persons.concat(newPerson));
         setNewName('');
+        setNewNumber('')
       }
+    }
+
+    const handelNewPhone = (event) => {
+      setNewNumber(event.target.value)
     }
 
     return (
@@ -34,6 +43,12 @@ const App = () => {
             name: <input 
               value={newName}
               onChange={handelNameChange}
+            />
+          </div>
+          <div>
+            phone: <input
+              value={newNumber}
+              onChange={handelNewPhone} 
             />
           </div>
           <div>
@@ -53,7 +68,7 @@ const Persons = (props) => {
 
   return (
     <div>
-      {persons.map(person => <p key={person.name}>{person.name}</p>)}
+      {persons.map(person => <p key={person.name}>{person.name} {person.number}</p>)}
     </div>
   )
 }
