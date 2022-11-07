@@ -4,7 +4,10 @@ import axios from 'axios'
 function App() {
   const [countries, setCountries] = useState([])
   const [serach, setSearch] = useState('')
+  const [country, SetCountry] = useState([])
 
+  const results = countries.filter(country => country.name.common.toLowerCase().includes(serach.toLocaleLowerCase()))
+ // console.log('result ->',results);
   useEffect(() => {
     console.log('fetch')
     axios
@@ -14,10 +17,17 @@ function App() {
       })
   },[])
 
+  const clickHandler = (choose) => {
+    console.log('click -> ',choose)
+    return SetCountry(countries.filter(country => country.cca2.includes(choose)))
+  }
+
   return (
     <div>
       <Search search={serach} setSearch={setSearch}/>
-      <Display  countries={countries.filter(country => country.name.common.toLowerCase().includes(serach.toLocaleLowerCase()))} />
+      {(results.length !== 1 ) ? <Display  results={results}  clickHandler={clickHandler}  />: <Country country={results} />}
+      {(results.length > 1 ) ? <Country country={country} /> : <p></p>}
+
     </div>
   );
 }
@@ -36,26 +46,44 @@ const Search = ({search,setSearch}) => {
   )
 }
 
-const Display = ({countries}) => {
-  console.log('Search result length -> ',countries.length);
+const Display = ({results, clickHandler,SetCountry}) => {
+ // console.log('Search result length -> ', results.length);
 
-  if (countries.length > 10) {
+  if (results.length > 10) {
     return (<p>Too many matches, specify another filter</p>)
-  } else if (countries.length > 1) {
-    return (countries.map(country => <p key={country.cca2}>{country.name.common}</p>))
-  } else if (countries.length === 1) {
-    const country = countries[0]
-    console.log('country ->' , country.flags.svg);
-    return (
-      <div>
-          <h1>{country.name.common} </h1>
-          <p>Capital: {country.capital}</p>
-          <p>Area: {country.area}</p>
-          <h3>Languages:</h3>
-          {Object.values(country.languages).map(lang =><li>{lang}</li>)}
-          <br />
-          <img src={country.flags.png} alt="Flag" />
-      </div>
-    );
+  } else if (results.length > 1) {
+    return (results.map(country => <Results key={country.cca2} country={country} clickHandler={clickHandler} />))
+  } else {
+    return <p>No result</p>
+  }
+}
+
+const Results = ({country, clickHandler}) => {
+
+  return(
+    <div key={country.cca2} >
+      <p>{country.name.common}
+      <button onClick={()=>clickHandler(country.cca2)}> show </button>
+      </p>
+    </div>
+  )
+}
+
+const Country = (props) => {
+//  console.log('** Country -> ',props.country);
+
+  if (props.country.length === 1) {
+    const country = props.country[0]
+  return (
+    <div key={country.cca2}>
+        <h1>{country.name.common} </h1>
+        <p>Capital: {country.capital}</p>
+        <p>Area: {country.area}</p>
+        <h3>Languages:</h3>
+        {Object.values(country.languages).map(lang =><li key={lang}>{lang}</li>)}
+        <br />
+        <img src={country.flags.png} alt="Flag" />
+    </div>
+  );
   }
 }
