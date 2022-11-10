@@ -46,6 +46,15 @@ const App = () => {
       setNewNumber(event.target.value)
     }
 
+    const deletePerson = (id) => {
+      console.log('del id', id);
+      let person = persons.find(person => person.id === id)
+      if (window.confirm(`Delete ${person.name}?`)) {
+        personService.removePerson(id)
+        .then(setPersons(persons.filter(person => person.id !== id)))
+      }
+    }
+
     return (
       <div>
         <h2>Phonebook</h2> 
@@ -53,7 +62,7 @@ const App = () => {
         <h2>Add a new</h2>
         <PersonForm newName={newName} newNumber={newNumber} handelNameChange={handelNameChange} handelNewPhone={handelNewPhone} addNewPerson={addNewPerson} />
         <h2>Numbers</h2>
-        <Persons persons={persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase()))} />
+        {persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase())).map(person => <Persons key={person.id} person={person} deletePerson={() => deletePerson(person.id)} />)} 
       </div>
     )
 }
