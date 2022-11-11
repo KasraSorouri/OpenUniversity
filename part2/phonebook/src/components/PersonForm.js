@@ -1,23 +1,27 @@
 const PersonForm = (props) => {
     const {addNewPerson,handelNameChange,handelNewPhone,newName,newNumber} = props
     return(
-        <div>
             <form onSubmit={addNewPerson}>
-                <div>
-                   name: <input 
-                   value={newName}
-                   onChange={handelNameChange}
-                />
-                </div>
-                <div>
-                 phone: <input
-                value={newNumber}
-                onChange={handelNewPhone} 
-                />
-                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>name:</td>
+                            <td><input 
+                                value={newName}
+                                onChange={handelNameChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>phone:</td>
+                            <td><input
+                                 value={newNumber}
+                                onChange={handelNewPhone} />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <button type="submit">add</button>
             </form>
-        </div>
     )
 }
 export default PersonForm;

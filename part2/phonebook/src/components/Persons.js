@@ -1,10 +1,13 @@
 const Persons = ({person, deletePerson}) => {
   
   return (
-    <p key={person.id}>
-      {person.name} {person.number}
+    <tr key={person.id}>
+      <td>{person.name}</td> 
+      <td>{person.number}</td>
+      <td>
       <button onClick={deletePerson}>Delete</button>
-    </p>
+      </td>
+    </tr>
   )
 }
 

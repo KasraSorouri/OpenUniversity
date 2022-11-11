@@ -90,7 +90,10 @@ const App = () => {
         <h2>Add a new</h2>
         <PersonForm newName={newName} newNumber={newNumber} handelNameChange={handelNameChange} handelNewPhone={handelNewPhone} addNewPerson={addNewPerson} />
         <h2>Numbers</h2>
-        {persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase())).map(person => <Persons key={person.id} person={person} deletePerson={() => deletePerson(person.id)} />)} 
+        <table>
+          <tbody>
+            {persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase())).map(person => <Persons key={person.id} person={person} deletePerson={() => deletePerson(person.id)} />)}</tbody>
+        </table>
       </div>
     )
 }
