@@ -5,6 +5,7 @@ import Search from './components/Search'
 import PersonForm from './components/PersonForm'
 import personService from './services/persons'
 import Message from './components/Message'
+import ShowError from './components/ShowError'
 import './index.css'
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
     const [newNumber, setNewNumber] = useState('')
     const [search, setSearch] = useState('')
     const [message, setMassege] = useState(null)
+    const [errorMassege, setError] = useState(null)
 
     useEffect(() => {
       personService.getAll()
@@ -40,20 +42,28 @@ const App = () => {
         if (window.confirm(`${newPerson.name} is already added to the phonebook, replace the old number with a new one? `)) {
           personService
             .updatePerson(existPerson.id,newPerson)
-            .then(res => setPersons(persons.map(person => person.id !== existPerson.id ? person : res)))
-          setNewName('');
-          setNewNumber('')
-          setMassege(`The numbe for ${newPerson.name} is chenge successfully!`)
-          setTimeout(()=> setMassege(null),5000)
+            .then(res => {setPersons(persons.map(person => person.id !== existPerson.id ? person : res))
+              setNewName('');
+              setNewNumber('')
+              setMassege(`The numbe for ${newPerson.name} is chenge successfully!`)
+              setTimeout(()=> setMassege(null),5000)
+            })
+            .catch(e => {
+              setError(`Information of ${newPerson.name} has already removed from the server!`)
+              setTimeout(()=> setError(null),5000)
+              setPersons(persons.filter(person => person.id !== existPerson.id))
+            })
+          
         }
       } else { 
         personService
           .addPerson(newPerson)
-          .then(res => setPersons(persons.concat(res)))
-        setNewName('');
-        setNewNumber('')
-        setMassege(`Added ${newPerson.name} to tho the phonebook successfully!`)
-        setTimeout(()=> setMassege(null),5000)
+          .then(res => {setPersons(persons.concat(res))
+            setNewName('');
+            setNewNumber('')
+            setMassege(`Added ${newPerson.name} to the phonebook successfully!`)
+            setTimeout(()=> setMassege(null),5000)
+          })
       }
     }
 
@@ -75,6 +85,7 @@ const App = () => {
       <div>
         <h2>Phonebook</h2> 
         <Message message={message} />
+        <ShowError errorMassege={errorMassege} />
         <Search setSearch={setSearch} search={search} />
         <h2>Add a new</h2>
         <PersonForm newName={newName} newNumber={newNumber} handelNameChange={handelNameChange} handelNewPhone={handelNewPhone} addNewPerson={addNewPerson} />
