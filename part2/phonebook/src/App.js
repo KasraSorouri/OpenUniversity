@@ -4,6 +4,8 @@ import Persons from './components/Persons'
 import Search from './components/Search'
 import PersonForm from './components/PersonForm'
 import personService from './services/persons'
+import Message from './components/Message'
+import './index.css'
 
 const App = () => {
   
@@ -11,6 +13,7 @@ const App = () => {
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
     const [search, setSearch] = useState('')
+    const [message, setMassege] = useState(null)
 
     useEffect(() => {
       personService.getAll()
@@ -40,6 +43,8 @@ const App = () => {
             .then(res => setPersons(persons.map(person => person.id !== existPerson.id ? person : res)))
           setNewName('');
           setNewNumber('')
+          setMassege(`The numbe for ${newPerson.name} is chenge successfully!`)
+          setTimeout(()=> setMassege(null),5000)
         }
       } else { 
         personService
@@ -47,6 +52,8 @@ const App = () => {
           .then(res => setPersons(persons.concat(res)))
         setNewName('');
         setNewNumber('')
+        setMassege(`Added ${newPerson.name} to tho the phonebook successfully!`)
+        setTimeout(()=> setMassege(null),5000)
       }
     }
 
@@ -62,10 +69,12 @@ const App = () => {
         .then(setPersons(persons.filter(person => person.id !== id)))
       }
     }
+    console.log('message', message);
 
     return (
       <div>
         <h2>Phonebook</h2> 
+        <Message message={message} />
         <Search setSearch={setSearch} search={search} />
         <h2>Add a new</h2>
         <PersonForm newName={newName} newNumber={newNumber} handelNameChange={handelNameChange} handelNewPhone={handelNewPhone} addNewPerson={addNewPerson} />
