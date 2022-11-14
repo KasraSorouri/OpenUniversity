@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localHost:3001/persons'
+const url = 'http://localHost:3001/api/persons'
 
 const getAll = () => {
     const request = axios.get(url)
