@@ -64,6 +64,11 @@ const App = () => {
             setMassege(`Added ${newPerson.name} to the phonebook successfully!`)
             setTimeout(()=> setMassege(null),5000)
           })
+          .catch(error => {
+            console.log(error.response.data.error)
+            setError(error.response.data.error)
+            setTimeout(() => setError(null),5000)
+          })
       }
     }
 
