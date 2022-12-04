@@ -15,18 +15,33 @@ const App = () => {
       setBlogs(blogs)
     )
   }, [])
+
+  useEffect(() => {
+    const loggedUserJson = window.localStorage.getItem('BlogListAppUser')
+    if (loggedUserJson) {
+      const user = JSON.parse(loggedUserJson)
+      setUser(user)
+    }
+  },[])
  
   const handelLogin = async (event) => {
     event.preventDefault()
 
     try {
       const user = await loginService({ username, password })
+
+      window.localStorage.setItem('BlogListAppUser',JSON.stringify(user))
       setUser(user)
       setUsername('')
       setPassword('')
     } catch (e) {
       console.log('Error -> ', e)
     }
+  }
+
+  const handelLogout = () => {
+    window.localStorage.removeItem('BlogListAppUser')
+    setUser(null)
   }
 
   if (user === null) {
@@ -38,7 +53,9 @@ const App = () => {
   }
   return(
     <div>
-      <h3>{user.name} logged in</h3>
+      <h3>{user.name} logged in
+        <button onClick={handelLogout} >logout</button>
+      </h3>
       <h2>blogs</h2>
         {blogs.map(blog =>
           <Blog key={blog.id} blog={blog} />
