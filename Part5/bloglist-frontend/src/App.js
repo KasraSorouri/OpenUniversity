@@ -4,6 +4,10 @@ import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import Message from './components/Message'
+import ShowError from './components/ShowError'
+import './index.css'
+
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -11,6 +15,8 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [blog, setBlog] = useState({})
+  const [message, setMassege] = useState(null)
+  const [errorMassege, setError] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -38,7 +44,9 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (e) {
-      console.log('Error -> ', e)
+      setError(`Wrong username or password!`)
+      setTimeout(()=> setError(null),5000)
+//      console.log('Error -> ', e)
     }
   }
 
@@ -49,27 +57,36 @@ const App = () => {
 
   const addBlogHandler = async (event) => {
     event.preventDefault()
-    console.log('add blog -> ', blog);
+  //  console.log('add blog -> ', blog);
 
     try {
       const newBlog = await blogService.addBlog(blog)
      // console.log('new blog -> ', newBlog);
       setBlogs(blogs.concat(newBlog))
       setBlog({})
+      setMassege(`A new blog ${newBlog.title} by ${newBlog.author} is added successfully!`)
+      setTimeout(()=> setMassege(null),5000)
     } catch (e) {
-      console.log('Error -> ', e)
+      setError(e.response.data.error)
+      setTimeout(()=> setError(null),5000)
+ //     console.log('Error -> ', e)
     }
   }
 
   if (user === null) {
     return (
-      <LoginForm username={username} setUsername={setUsername}
+      <div>
+        <ShowError errorMassege={errorMassege} />
+        <LoginForm username={username} setUsername={setUsername}
           password={password} setPassword={setPassword}
           handelLogin={handelLogin} />
+      </div>
     )
   }
   return(
     <div>
+      <Message message={message} />
+      <ShowError errorMassege={errorMassege} />
       <h3>{user.name} logged in
         <button onClick={handelLogout} >logout</button>
       </h3>

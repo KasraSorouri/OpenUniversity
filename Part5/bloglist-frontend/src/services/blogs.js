@@ -5,7 +5,7 @@ let token = null
 
 const setToken = newToken => {
   token = `Barear ${newToken}`
-  console.log('token -> ', token);
+//  console.log('token -> ', token);
 }
 
 const getAll = () => {
