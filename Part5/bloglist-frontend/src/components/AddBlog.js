@@ -1,4 +1,14 @@
-const AddBlog = ({ blog, setBlog, addBlogHandler }) => {
+import { useState } from "react"
+
+const AddBlog = ({addBlog}) => {
+
+  const [blog, setBlog] = useState({})
+
+  const addBlogHandler = (event) => {
+    event.preventDefault()
+    addBlog(blog)
+    setBlog({})
+  }
   
   return (
     <div>

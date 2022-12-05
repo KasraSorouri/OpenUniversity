@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import AddBlog from './components/AddBlog'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
@@ -7,16 +7,16 @@ import loginService from './services/login'
 import Message from './components/Message'
 import ShowError from './components/ShowError'
 import './index.css'
+import Togglable from './components/Togglable'
 
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  const [blog, setBlog] = useState({})
   const [message, setMassege] = useState(null)
   const [errorMassege, setError] = useState(null)
+
+  const addBlogRef = useRef()
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -33,16 +33,13 @@ const App = () => {
     }
   },[])
  
-  const handelLogin = async (event) => {
-    event.preventDefault()
-
+  const handelLogin = async ({username, password}) => {
+    
     try {
       const user = await loginService({ username, password })
       blogService.setToken(user.token)
       window.localStorage.setItem('BlogListAppUser',JSON.stringify(user))
       setUser(user)
-      setUsername('')
-      setPassword('')
     } catch (e) {
       setError(`Wrong username or password!`)
       setTimeout(()=> setError(null),5000)
@@ -55,15 +52,15 @@ const App = () => {
     setUser(null)
   }
 
-  const addBlogHandler = async (event) => {
-    event.preventDefault()
+  const addBlogHandler = async (blog) => {
   //  console.log('add blog -> ', blog);
 
     try {
       const newBlog = await blogService.addBlog(blog)
+      addBlogRef.current.toggleVisibility()
+
      // console.log('new blog -> ', newBlog);
       setBlogs(blogs.concat(newBlog))
-      setBlog({})
       setMassege(`A new blog ${newBlog.title} by ${newBlog.author} is added successfully!`)
       setTimeout(()=> setMassege(null),5000)
     } catch (e) {
@@ -77,9 +74,7 @@ const App = () => {
     return (
       <div>
         <ShowError errorMassege={errorMassege} />
-        <LoginForm username={username} setUsername={setUsername}
-          password={password} setPassword={setPassword}
-          handelLogin={handelLogin} />
+        <LoginForm login={handelLogin} />
       </div>
     )
   }
@@ -90,7 +85,9 @@ const App = () => {
       <h3>{user.name} logged in
         <button onClick={handelLogout} >logout</button>
       </h3>
-      <AddBlog blog={blog} setBlog={setBlog} addBlogHandler={addBlogHandler} />
+      <Togglable buttonLabel={'Add Blog'} ref={addBlogRef} >
+        <AddBlog addBlog={addBlogHandler} />
+      </Togglable>
       <h2>blogs</h2>
         {blogs.map(blog =>
           <Blog key={blog.id} blog={blog} />
