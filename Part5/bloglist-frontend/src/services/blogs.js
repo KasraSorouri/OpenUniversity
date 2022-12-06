@@ -22,9 +22,18 @@ const addBlog = async (blog) => {
   return response.data
 }
 
+const editBlog = async (blog) => {
+  console.log('new blog ->',blog);
+  const blogUrl = `${baseUrl}/${blog.id}`
+  const response = await axios.put(blogUrl, blog)
+  console.log('Put response -> ',response.data);
+return response.data
+}
+
 
 export default {
   getAll,
   addBlog,
-  setToken
+  setToken,
+  editBlog
 }

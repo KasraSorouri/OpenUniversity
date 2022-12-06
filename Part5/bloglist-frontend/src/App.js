@@ -8,6 +8,7 @@ import Message from './components/Message'
 import ShowError from './components/ShowError'
 import './index.css'
 import Togglable from './components/Togglable'
+import blogs from './services/blogs'
 
 
 const App = () => {
@@ -31,19 +32,19 @@ const App = () => {
       setUser(user)
       blogService.setToken(user.token)
     }
-  },[])
+  }, [])
  
-  const handelLogin = async ({username, password}) => {
+  const handelLogin = async ({ username, password }) => {
     
     try {
       const user = await loginService({ username, password })
       blogService.setToken(user.token)
-      window.localStorage.setItem('BlogListAppUser',JSON.stringify(user))
+      window.localStorage.setItem('BlogListAppUser', JSON.stringify(user))
       setUser(user)
     } catch (e) {
       setError(`Wrong username or password!`)
-      setTimeout(()=> setError(null),5000)
-//      console.log('Error -> ', e)
+      setTimeout(() => setError(null), 5000)
+      //      console.log('Error -> ', e)
     }
   }
 
@@ -53,20 +54,31 @@ const App = () => {
   }
 
   const addBlogHandler = async (blog) => {
-  //  console.log('add blog -> ', blog);
+    //  console.log('add blog -> ', blog);
 
     try {
       const newBlog = await blogService.addBlog(blog)
       addBlogRef.current.toggleVisibility()
 
-     // console.log('new blog -> ', newBlog);
+      // console.log('new blog -> ', newBlog);
       setBlogs(blogs.concat(newBlog))
       setMassege(`A new blog ${newBlog.title} by ${newBlog.author} is added successfully!`)
-      setTimeout(()=> setMassege(null),5000)
+      setTimeout(() => setMassege(null), 5000)
     } catch (e) {
       setError(e.response.data.error)
-      setTimeout(()=> setError(null),5000)
- //     console.log('Error -> ', e)
+      setTimeout(() => setError(null), 5000)
+      //     console.log('Error -> ', e)
+    }
+  }
+
+  const likeHandler = async (blog) => {
+    console.log('like handler -> ', blog);
+    try {
+      const updatedBlog = await blogService.editBlog(blog)
+      setBlogs(blogs.map(blog => blog.id !== updatedBlog.id ? blog : updatedBlog))
+    } catch (e) {
+      setError(e.response.data.error)
+      setTimeout(() => setError(null), 5000)
     }
   }
 
@@ -90,7 +102,7 @@ const App = () => {
       </Togglable>
       <h2>blogs</h2>
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} likeHandler={likeHandler} />
         )}
     </div>
   )

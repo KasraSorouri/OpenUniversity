@@ -10,6 +10,12 @@ const Blog = ({ blog, likeHandler }) => {
     marginBottom: 5
   }
 
+  const addLike = () => {
+    console.log('add like', blog.likes);
+    blog.likes ++
+    likeHandler(blog)
+  }
+
   const [detailShow, setdetailShow] = useState(false)
 
   const hideWhenVisible = { display: detailShow ? 'none' : '' }
@@ -29,7 +35,7 @@ const Blog = ({ blog, likeHandler }) => {
         <button onClick={toggleVisibility}> hide</button>
         <br/>{blog.url}
         <br/>likesL: {blog.likes}
-        <button onClick={likeHandler}>like</button>
+        <button onClick={addLike}>like</button>
         <br/>{blog.author}
       </div>
 
