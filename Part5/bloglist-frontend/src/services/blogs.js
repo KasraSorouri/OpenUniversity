@@ -18,7 +18,7 @@ const addBlog = async (blog) => {
     headers: { Authorization: token },
   }
   const response = await axios.post(baseUrl, blog, config)
- // console.log('Post response -> ',response.data);
+  // console.log('Post response -> ',response.data);
   return response.data
 }
 
@@ -27,8 +27,8 @@ const editBlog = async (blog) => {
 
   const blogUrl = `${baseUrl}/${blog.id}`
   const response = await axios.put(blogUrl, blog)
-//  console.log('Put response -> ',response.data);
-return response.data
+  //  console.log('Put response -> ',response.data);
+  return response.data
 }
 
 const deleteBlog = async (blog) => {
@@ -37,7 +37,7 @@ const deleteBlog = async (blog) => {
     headers: { Authorization: token },
   }
   const response = await axios.delete(blogUrl,config)
-  console.log('delete response -> ',response.data);
+  //console.log('delete response -> ',response.data)
   return response.data
 }
 

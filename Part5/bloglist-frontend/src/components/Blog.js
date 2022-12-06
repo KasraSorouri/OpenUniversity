@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
   const blogStyle = {
@@ -10,10 +10,10 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
     marginBottom: 5
   }
 
-  
+
 
   const addLike = () => {
-    console.log('add like', blog.likes);
+    console.log('add like', blog.likes)
     blog.likes ++
     likeHandler(blog)
   }
@@ -37,11 +37,11 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
 
   //console.log('blog ->', blog.user);
   //console.log('user ->', user.id);
-  
+
   return (
     <div style={blogStyle}>
       <div style={hideWhenVisible}>
-        {blog.title} 
+        {blog.title}
         <button onClick={toggleVisibility}> show</button>
       </div>
       <div style={showWhenVisible} >
@@ -51,7 +51,7 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
         <br/>likesL: {blog.likes}
         <button onClick={addLike}>like</button>
         <br />{blog.author}
-        <br />{blog.user.id === user.id ? <button onClick={()=> removeBlog(blog)} >Remove</button> : null}
+        <br />{blog.user.id === user.id ? <button onClick={() => removeBlog(blog)} >Remove</button> : null}
       </div>
 
     </div>
@@ -59,6 +59,6 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
 
   )
 }
-  
+
 
 export default Blog

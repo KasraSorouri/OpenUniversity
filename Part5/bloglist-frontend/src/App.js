@@ -32,16 +32,16 @@ const App = () => {
       blogService.setToken(user.token)
     }
   }, [])
- 
+
   const handelLogin = async ({ username, password }) => {
-    
+
     try {
       const user = await loginService({ username, password })
       blogService.setToken(user.token)
       window.localStorage.setItem('BlogListAppUser', JSON.stringify(user))
       setUser(user)
     } catch (e) {
-      setError(`Wrong username or password!`)
+      setError('Wrong username or password!')
       setTimeout(() => setError(null), 5000)
       //      console.log('Error -> ', e)
     }
@@ -59,7 +59,7 @@ const App = () => {
       const newBlog = await blogService.addBlog(blog)
       addBlogRef.current.toggleVisibility()
 
-      console.log('new blog -> ', newBlog);
+      console.log('new blog -> ', newBlog)
       setBlogs(blogs.concat(newBlog))
       setMassege(`A new blog ${newBlog.title} by ${newBlog.author} is added successfully!`)
       setTimeout(() => setMassege(null), 5000)
@@ -71,7 +71,7 @@ const App = () => {
   }
 
   const likeHandler = async (blog) => {
-    console.log('like handler -> ', blog);
+    console.log('like handler -> ', blog)
     const editedBlog = {
       id: blog.id,
       title: blog.title,
@@ -79,7 +79,7 @@ const App = () => {
       url: blog.url,
       likes: blog.likes,
       user: blog.user.id || blog.user
-}
+    }
     try {
       const updatedBlog = await blogService.editBlog(editedBlog)
       setBlogs(blogs.map(blog => blog.id !== updatedBlog.id ? blog : updatedBlog))
@@ -90,7 +90,7 @@ const App = () => {
   }
 
   const deleteBlog = async (blog) => {
-    console.log('delete from database ->', blog);
+    console.log('delete from database ->', blog)
     const id = blog.id
     try {
       await blogService.deleteBlog(blog)
@@ -124,7 +124,7 @@ const App = () => {
       <h2>blogs</h2>
       {sortedBlogs.map(blog =>
         <Blog key={blog.id} blog={blog} likeHandler={likeHandler} user={user} deleteBlog={deleteBlog} />
-        )}
+      )}
     </div>
   )
 }
