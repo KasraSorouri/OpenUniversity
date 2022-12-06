@@ -8,7 +8,6 @@ import Message from './components/Message'
 import ShowError from './components/ShowError'
 import './index.css'
 import Togglable from './components/Togglable'
-import blogs from './services/blogs'
 
 
 const App = () => {
@@ -60,7 +59,7 @@ const App = () => {
       const newBlog = await blogService.addBlog(blog)
       addBlogRef.current.toggleVisibility()
 
-      // console.log('new blog -> ', newBlog);
+      console.log('new blog -> ', newBlog);
       setBlogs(blogs.concat(newBlog))
       setMassege(`A new blog ${newBlog.title} by ${newBlog.author} is added successfully!`)
       setTimeout(() => setMassege(null), 5000)
@@ -73,9 +72,29 @@ const App = () => {
 
   const likeHandler = async (blog) => {
     console.log('like handler -> ', blog);
+    const editedBlog = {
+      id: blog.id,
+      title: blog.title,
+      author : blog.author,
+      url: blog.url,
+      likes: blog.likes,
+      user: blog.user.id || blog.user
+}
     try {
-      const updatedBlog = await blogService.editBlog(blog)
+      const updatedBlog = await blogService.editBlog(editedBlog)
       setBlogs(blogs.map(blog => blog.id !== updatedBlog.id ? blog : updatedBlog))
+    } catch (e) {
+      setError(e.response.data.error)
+      setTimeout(() => setError(null), 5000)
+    }
+  }
+
+  const deleteBlog = async (blog) => {
+    console.log('delete from database ->', blog);
+    const id = blog.id
+    try {
+      await blogService.deleteBlog(blog)
+      setBlogs(blogs.filter(blog => blog.id !== id))
     } catch (e) {
       setError(e.response.data.error)
       setTimeout(() => setError(null), 5000)
@@ -104,7 +123,7 @@ const App = () => {
       </Togglable>
       <h2>blogs</h2>
       {sortedBlogs.map(blog =>
-        <Blog key={blog.id} blog={blog} likeHandler={likeHandler} />
+        <Blog key={blog.id} blog={blog} likeHandler={likeHandler} user={user} deleteBlog={deleteBlog} />
         )}
     </div>
   )

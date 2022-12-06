@@ -23,11 +23,22 @@ const addBlog = async (blog) => {
 }
 
 const editBlog = async (blog) => {
-  console.log('new blog ->',blog);
+//  console.log('edit blog ->', blog);
+
   const blogUrl = `${baseUrl}/${blog.id}`
   const response = await axios.put(blogUrl, blog)
-  console.log('Put response -> ',response.data);
+//  console.log('Put response -> ',response.data);
 return response.data
+}
+
+const deleteBlog = async (blog) => {
+  const blogUrl = `${baseUrl}/${blog.id}`
+  const config = {
+    headers: { Authorization: token },
+  }
+  const response = await axios.delete(blogUrl,config)
+  console.log('delete response -> ',response.data);
+  return response.data
 }
 
 
@@ -35,5 +46,6 @@ export default {
   getAll,
   addBlog,
   setToken,
-  editBlog
+  editBlog,
+  deleteBlog
 }
