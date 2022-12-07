@@ -39,16 +39,16 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
   //console.log('user ->', user.id);
 
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className='blog'>
       <div style={hideWhenVisible}>
-        {blog.title}
+        {blog.title} by {blog.author}
         <button onClick={toggleVisibility}> show</button>
       </div>
-      <div style={showWhenVisible} >
+      <div style={showWhenVisible} className='detail'>
         {blog.title}
         <button onClick={toggleVisibility}> hide</button>
         <br/>{blog.url}
-        <br/>likesL: {blog.likes}
+        <br/>likes: {blog.likes}
         <button onClick={addLike}>like</button>
         <br />{blog.author}
         <br />{blog.user.id === user.id ? <button onClick={() => removeBlog(blog)} >Remove</button> : null}
