@@ -1,6 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import Blog from './Blog'
 
 describe('render content', () => {
@@ -41,4 +42,28 @@ describe('render content', () => {
     expect(element).toHaveStyle('display: none')
   })
 
-} )
+  test('show url after press show button', async () => {
+
+    render(<Blog blog={blog} user={user} />)
+
+    const action = userEvent.setup()
+    const button = screen.getByText('show')
+    await action.click(button)
+
+    const element = screen.getByText(/http:\/\/www.test.com/i)
+    expect(element).toBeVisible()
+  })
+
+  test('show likes after press show button', async () => {
+
+    render(<Blog blog={blog} user={user} />)
+
+    const action = userEvent.setup()
+    const button = screen.getByText('show')
+    await action.click(button)
+
+    const element = screen.getByText(/likes/i)
+    expect(element).toBeVisible()
+  })
+
+})
