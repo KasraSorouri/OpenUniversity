@@ -66,4 +66,21 @@ describe('render content', () => {
     expect(element).toBeVisible()
   })
 
+  test('test like button', async () => {
+
+    const mockHandler = jest.fn()
+
+    render(<Blog blog={blog} user={user} likeHandler={mockHandler} />)
+
+    const action = userEvent.setup()
+    const button = screen.getByText('show')
+    await action.click(button)
+
+    const like = screen.getByText('like')
+    await action.click(like)
+    await action.click(like)
+
+    expect(mockHandler.mock.calls).toHaveLength(2)
+  })
+
 })

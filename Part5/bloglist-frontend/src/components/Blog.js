@@ -13,7 +13,7 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
 
 
   const addLike = () => {
-    console.log('add like', blog.likes)
+//    console.log('add like', blog.likes)
     blog.likes ++
     likeHandler(blog)
   }
