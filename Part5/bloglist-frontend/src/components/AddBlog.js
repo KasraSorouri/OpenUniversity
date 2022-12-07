@@ -19,6 +19,7 @@ const AddBlog = ({ addBlog }) => {
             type='text'
             value={blog.title || ''}
             name='title'
+            placeholder='Blog title'
             onChange={({ target }) => setBlog(values => ({ ...values, [target.name]: target.value }))} />
           <br />
         Author:
@@ -26,6 +27,7 @@ const AddBlog = ({ addBlog }) => {
             type='text'
             value={blog.author || ''}
             name='author'
+            placeholder='Blog author'
             onChange={({ target }) => setBlog(values => ({ ...values, [target.name]: target.value }))} />
           <br />
         Url:
@@ -33,6 +35,7 @@ const AddBlog = ({ addBlog }) => {
             type='text'
             value={blog.url || ''}
             name='url'
+            placeholder='Blog url'
             onChange={({ target }) => setBlog(values => ({ ...values, [target.name]: target.value }))} />
         </p>
         <button onClick={addBlogHandler}>Add Blog</button>

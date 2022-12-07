@@ -13,7 +13,7 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
 
 
   const addLike = () => {
-//    console.log('add like', blog.likes)
+    //    console.log('add like', blog.likes)
     blog.likes ++
     likeHandler(blog)
   }
@@ -53,12 +53,8 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
         <br />{blog.author}
         <br />{blog.user.id === user.id ? <button onClick={() => removeBlog(blog)} >Remove</button> : null}
       </div>
-
     </div>
-
-
   )
 }
-
 
 export default Blog
