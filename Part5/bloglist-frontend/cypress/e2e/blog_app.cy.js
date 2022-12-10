@@ -48,4 +48,21 @@ describe('Blog App Test', () => {
         .should('contain', 'User Test logged in')
     })
   })
+
+  describe('After logged in', function () {
+    beforeEach(function () {
+      cy.login({ username:'user1', password:'1234' })
+    })
+
+    it('New blog can be created', function () {
+      cy.contains('Add Blog').click()
+      cy.get('[name="title"]').type('The test blog')
+      cy.get('[name="author"]').type('Test Person')
+      cy.get('[name="url"]').type('www.test.com')
+      cy.get('#createNewBlog').click()
+
+      cy.contains('The test blog by Test Person')
+    })
+  })
 })
+

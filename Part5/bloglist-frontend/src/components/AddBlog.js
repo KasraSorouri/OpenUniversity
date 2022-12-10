@@ -38,7 +38,7 @@ const AddBlog = ({ addBlog }) => {
             placeholder='Blog url'
             onChange={({ target }) => setBlog(values => ({ ...values, [target.name]: target.value }))} />
         </p>
-        <button onClick={addBlogHandler}>Add Blog</button>
+        <button onClick={addBlogHandler} id='createNewBlog'>Add Blog</button>
       </form>
     </div>
   )
