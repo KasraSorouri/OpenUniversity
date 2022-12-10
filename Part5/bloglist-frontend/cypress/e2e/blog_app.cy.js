@@ -1,12 +1,18 @@
 describe('Blog App Test', () => {
   beforeEach(function () {
     cy.request('POST', 'http://localhost:3003/api/testing/reset')
-    const user = {
-      name: 'User Test',
+    const user1 = {
+      name: 'User Test1',
       username: 'user1',
       password: '1234'
     }
-    cy.request('POST', 'http://localhost:3003/api/users/', user)
+    const user2 = {
+      name: 'User Test2',
+      username: 'user2',
+      password: '1234'
+    }
+    cy.request('POST', 'http://localhost:3003/api/users/', user1)
+    cy.request('POST', 'http://localhost:3003/api/users/', user2)
     cy.visit('/')
   })
 
@@ -45,13 +51,17 @@ describe('Blog App Test', () => {
       cy.contains('login').click()
 
       cy.get('html')
-        .should('contain', 'User Test logged in')
+        .should('contain', 'User Test1 logged in')
     })
   })
 
   describe('After logged in', function () {
     beforeEach(function () {
-      cy.login({ username:'user1', password:'1234' })
+      cy.login({ username: 'user1', password: '1234' })
+      cy.addBlog({ title: 'Blog 1', author: 'Person 1', url: 'www.test.com' })
+      cy.login({ username: 'user2', password: '1234' })
+      cy.addBlog({ title: 'Blog 2', author: 'Person 2', url: 'www.test.com' })
+      cy.login({ username: 'user1', password: '1234' })
     })
 
     it('New blog can be created', function () {
@@ -63,6 +73,20 @@ describe('Blog App Test', () => {
 
       cy.contains('The test blog by Test Person')
     })
+
+    it('User can like a blog', function () {
+      cy.contains('Blog 2')
+        .contains('show').click()
+
+      cy.contains('Blog 2').parent()
+        .find('#like').click()
+
+      cy.contains('Blog 2').parent()
+        .contains('likes: 1')
+    })
   })
+
+
+
 })
 
