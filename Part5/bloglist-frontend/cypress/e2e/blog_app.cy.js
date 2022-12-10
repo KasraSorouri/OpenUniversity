@@ -58,9 +58,9 @@ describe('Blog App Test', () => {
   describe('After logged in', function () {
     beforeEach(function () {
       cy.login({ username: 'user1', password: '1234' })
-      cy.addBlog({ title: 'Blog 1', author: 'Person 1', url: 'www.test.com' })
+      cy.addBlog({ title: 'First Blog', author: 'Person 1', url: 'www.test.com' })
       cy.login({ username: 'user2', password: '1234' })
-      cy.addBlog({ title: 'Blog 2', author: 'Person 2', url: 'www.test.com' })
+      cy.addBlog({ title: 'Secound Blog', author: 'Person 2', url: 'www.test.com' })
       cy.login({ username: 'user1', password: '1234' })
     })
 
@@ -75,18 +75,53 @@ describe('Blog App Test', () => {
     })
 
     it('User can like a blog', function () {
-      cy.contains('Blog 2')
+      cy.contains('Secound Blog')
         .contains('show').click()
 
-      cy.contains('Blog 2').parent()
+      cy.contains('Secound Blog').parent()
         .find('#like').click()
 
-      cy.contains('Blog 2').parent()
+      cy.contains('Secound Blog').parent()
         .contains('likes: 1')
     })
+
+    it('User who created blog can delete it', function () {
+      cy.contains('First Blog')
+        .contains('show').click()
+
+      cy.contains('First Blog').parent()
+        .find('#delete').click()
+
+      cy.get('html').should('not.contain','First Blog')
+    })
+
+    it('User who not created blog can not delete it', function () {
+      cy.contains('Secound Blog')
+        .contains('show').click()
+
+      cy.contains('Secound Blog').parent()
+        .should('not.contain', '#delete')
+    })
+
+    it('blogs are ordered acording to their likes', function () {
+      cy.get('.blog').eq(0).should('contain', 'First Blog')
+      cy.get('.blog').eq(1).should('contain', 'Secound Blog')
+
+      cy.contains('Secound Blog').contains('show').click()
+      cy.contains('Secound Blog').parent().find('#like').as('like-blog2')
+      cy.get('@like-blog2').click()
+
+      cy.get('.blog').eq(1).should('contain', 'First Blog')
+      cy.get('.blog').eq(0).should('contain', 'Secound Blog')
+
+      cy.contains('First Blog').contains('show').click()
+      cy.contains('First Blog').parent().find('#like').as('like-blog1')
+      cy.get('@like-blog1').click()
+      cy.get('@like-blog1').click()
+
+      cy.get('.blog').eq(0).should('contain', 'First Blog')
+      cy.get('.blog').eq(1).should('contain', 'Secound Blog')
+    })
   })
-
-
-
 })
 
