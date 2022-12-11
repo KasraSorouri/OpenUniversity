@@ -48,7 +48,7 @@ const Blog = ({ blog, likeHandler , user , deleteBlog }) => {
         {blog.title}
         <button onClick={toggleVisibility} id='hide'> hide</button>
         <br/>{blog.url}
-        <br/>likes: {blog.likes}
+        <br/>likes: <span id='likes' >{blog.likes}</span>
         <button onClick={addLike} id='like'>like</button>
         <br />{blog.author}
         <br />{blog.user.id === user.id ? <button onClick={() => removeBlog(blog)} id='delete' >Remove</button> : null}

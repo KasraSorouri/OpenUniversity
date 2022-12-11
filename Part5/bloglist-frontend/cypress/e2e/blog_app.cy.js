@@ -111,16 +111,23 @@ describe('Blog App Test', () => {
       cy.contains('Secound Blog').parent().find('#like').as('like-blog2')
       cy.get('@like-blog2').click()
 
-      cy.get('.blog').eq(1).should('contain', 'First Blog')
-      cy.get('.blog').eq(0).should('contain', 'Secound Blog')
+      cy.visit('/')
+      cy.get('.blog').then((blogs) => {
+        expect(blogs.eq(1)).to.contain('First Blog')
+        expect(blogs.eq(0)).to.contain('Secound Blog')
+      })
 
       cy.contains('First Blog').contains('show').click()
       cy.contains('First Blog').parent().find('#like').as('like-blog1')
       cy.get('@like-blog1').click()
       cy.get('@like-blog1').click()
 
-      cy.get('.blog').eq(0).should('contain', 'First Blog')
-      cy.get('.blog').eq(1).should('contain', 'Secound Blog')
+      cy.visit('/')
+      cy.get('.blog').then((blogs) => {
+        expect(blogs.eq(0)).to.contain('First Blog')
+        expect(blogs.eq(1)).to.contain('Secound Blog')
+      })
+
     })
   })
 })
