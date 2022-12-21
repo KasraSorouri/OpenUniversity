@@ -24,6 +24,15 @@ export const addVoteOf = (id) => {
   })
 }
 
+export const newAnecdote = (content) => {
+  return ({
+    type: 'NEWANECDOTE',
+    data: asObject(content)
+  })
+  
+
+}
+
 const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +46,10 @@ const reducer = (state = initialState, action) => {
       const newNote = { ...note, votes: note.votes + 1 }
       return state.map(note => note.id !== id ? note : newNote)
     }
+    case 'NEWANECDOTE': {
+      return state.concat(action.data)
+    }
+      
     
     default: return state
   }
