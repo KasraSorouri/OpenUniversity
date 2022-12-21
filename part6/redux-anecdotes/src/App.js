@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addVoteOf, newAnecdote } from './reducers/anecdoteReducer'
 
 const App = () => {
-  const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => state.sort((a,b) => a.votes > b.votes ? -1 : 1))
+  console.log('sotered annecdotes -> ', anecdotes);
   const dispatch = useDispatch()
 
   const vote = (id) => {
