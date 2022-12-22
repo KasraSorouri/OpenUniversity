@@ -3,11 +3,16 @@ import { addVoteOf } from "../reducers/anecdoteReducer"
 import { voteNotification, resetNotification } from "../reducers/notificationReducer"
 
 const AnecdoteList = () => {
-  
-  const anecdotes = useSelector(state => state.anecdotes.sort((a, b) => a.votes > b.votes ? -1 : 1))
+  const filter = useSelector(state => state.filter)
+ 
+  const anecdotes = useSelector(state =>
+    state.anecdotes.filter(anecdote =>
+      anecdote.content.includes(filter))
+      .sort((a, b) => a.votes > b.votes ? -1 : 1))
   const dispatch = useDispatch()
 
   const vote = (anecdote) => {
+    
     console.log('vote', anecdote)
     dispatch(addVoteOf(anecdote.id))
     dispatch(voteNotification(anecdote.content))
