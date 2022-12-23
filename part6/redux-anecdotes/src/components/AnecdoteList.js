@@ -4,7 +4,8 @@ import { setNotification } from "../reducers/notificationReducer"
 
 const AnecdoteList = () => {
   const filter = useSelector(state => state.filter)
- 
+  const timeoutId = useSelector(state => state.notification.timeoutId)
+  console.log('list timeout id -> ',timeoutId );
   const anecdotes = useSelector(state =>
     state.anecdotes.filter(anecdote =>
       anecdote.content.includes(filter))
@@ -15,7 +16,7 @@ const AnecdoteList = () => {
     
     console.log('vote', anecdote)
     dispatch(updateAnecdote(anecdote))
-    dispatch(setNotification(`you voted '${anecdote.content}'`, 10))
+    dispatch(setNotification(`you voted '${anecdote.content}'`, 5,timeoutId))
   }
 
   return (

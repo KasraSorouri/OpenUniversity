@@ -7,8 +7,8 @@ const store = configureStore({
   reducer: {
     anecdotes: anecdoteReducer,
     notification: notificationReducer,
-    filter: filterSlice
-  }
+    filter: filterSlice,
+  },
 })
 
 export default store

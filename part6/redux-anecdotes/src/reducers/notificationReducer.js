@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = null
+const initialState = {text: null, timeoutId: undefined}
 const notificatoinSlice = createSlice({
   name: 'notification',
   initialState,
@@ -9,19 +9,25 @@ const notificatoinSlice = createSlice({
       return action.payload
     },
     resetNotification(state, action) {
-       return null
+       return initialState
      }
   }
 })
 
 export const { addNotification, voteNotification, resetNotification } = notificatoinSlice.actions
 
-export const setNotification = (text, time) => {
+export const setNotification = (text, time, timeoutId) => {
+
+  console.log('**** Timeout Id -> ', timeoutId);
+
+  clearTimeout(timeoutId)
   return dispatch => {
-    dispatch(addNotification(text))
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       dispatch(resetNotification())
     }, time * 1000);
+    dispatch(addNotification({text,timeoutId}))
+
+    console.log('Timeout Id -> ', timeoutId);
   }
 }
 

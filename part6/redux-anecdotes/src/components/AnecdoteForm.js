@@ -12,7 +12,7 @@ const asObject = (anecdote) => {
 
 const AnecdoteForm = (props) => {
  // const dispatch = useDispatch()
-
+  const  timeoutId = props.notification.timeoutId
   const addAnecdote = async (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
@@ -20,7 +20,7 @@ const AnecdoteForm = (props) => {
  //   dispatch(createAnecdote(asObject(content)))
  //   dispatch(setNotification(`new anecdote '${content}'`, 10))
     props.createAnecdote(asObject(content))
-    props.setNotification(`new anecdote '${content}'`, 10)
+    props.setNotification(`new anecdote '${content}'`, 5, timeoutId)
   }
 
   return (
@@ -34,11 +34,13 @@ const AnecdoteForm = (props) => {
   )
 }
 //export default AnecdoteForm
-
+const mapStateToProps = (state) => {
+  return { notification: state.notification }
+}
 const mapDispatchToProps = {
   createAnecdote,
   setNotification,
 }
 
-const ConnectedAnecdoteForm = connect(null,mapDispatchToProps)(AnecdoteForm)
+const ConnectedAnecdoteForm = connect(mapStateToProps,mapDispatchToProps)(AnecdoteForm)
 export default ConnectedAnecdoteForm
