@@ -1,12 +1,9 @@
-//import { useSelector, useDispatch } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import { connect } from 'react-redux'
-//import { resetNotification } from '../reducers/notificationReducer'
 
 const Notification = (props) => {
   console.log('notification props -> ', props);
- // const dispatch = useDispatch()
   //const notification = useSelector(state => state.notification)
- // const notification = props.notification
   const style = {
     border: 'solid',
     padding: 10,
