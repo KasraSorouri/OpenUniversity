@@ -2,10 +2,8 @@ import axios from 'axios'
 const baseUrl = '/api/blogs'
 
 let token = null
-
 const setToken = (newToken) => {
   token = `Barear ${newToken}`
-  //  console.log('token -> ', token);
 }
 
 const getAll = () => {

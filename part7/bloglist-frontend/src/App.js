@@ -1,53 +1,33 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import AddBlog from './components/AddBlog'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
-import blogService from './services/blogs'
-import loginService from './services/login'
 import Notification from './components/Notification'
-//import ShowError from './components/ShowError'
 import './index.css'
 import Togglable from './components/Togglable'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
 import { createBlog, initialize } from './reducers/blogReducer'
+import { loginUser, setUser, userInitialize } from './reducers/userReducer'
 
 const App = () => {
 
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(initialize())
-  }, [])
+  useEffect(() => { dispatch(initialize()) }, [])
+  useEffect(() => { dispatch(userInitialize()) },[])
 
   const blogs = useSelector(state => state.blogs)
-  console.log('app blogs ->', blogs)
-  const [user, setUser] = useState(null)
+  let user = useSelector(state => state.user)
 
   const addBlogRef = useRef()
 
-  useEffect(() => {
-    const loggedUserJson = window.localStorage.getItem('BlogListAppUser')
-    if (loggedUserJson) {
-      const user = JSON.parse(loggedUserJson)
-      setUser(user)
-      blogService.setToken(user.token)
-    }
-  }, [])
-
-  const handelLogin = async ({ username, password }) => {
-    try {
-      const user = await loginService({ username, password })
-      blogService.setToken(user.token)
-      window.localStorage.setItem('BlogListAppUser', JSON.stringify(user))
-      setUser(user)
-    } catch (e) {
-      dispatch(setNotification('Wrong username or password!',3))
-    }
+  const handelLogin = ({ username, password }) => {
+    dispatch(loginUser(username, password))
   }
 
   const handelLogout = () => {
     window.localStorage.removeItem('BlogListAppUser')
-    setUser(null)
+    dispatch(setUser(null))
   }
 
   const addBlogHandler = async (blog) => {
@@ -65,15 +45,9 @@ const App = () => {
     }
   }
 
-  let sortedBlogs
-  if (blogs.length > 0) {
-    sortedBlogs = blogs
-  } else {
-    sortedBlogs = blogs
-  }
+  const sortedBlogs = blogs
 
-  //const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes)
-  //const sortedBlogs = blogs
+  //sortedBlogs = sortedBlogs.sort((a, b) => b.likes - a.likes)
   if (user === null) {
     return (
       <div>
