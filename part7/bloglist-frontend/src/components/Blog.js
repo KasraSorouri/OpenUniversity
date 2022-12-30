@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateBlog, deleteBlog } from '../reducers/blogReducer'
 
-const Blog = ({ blog, likeHandler, user, deleteBlog }) => {
+
+const Blog = ({ blog, user }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingBottom: 10,
@@ -10,10 +13,20 @@ const Blog = ({ blog, likeHandler, user, deleteBlog }) => {
     marginBottom: 5,
   }
 
+  const dispatch = useDispatch()
+
   const addLike = () => {
-    //    console.log('add like', blog.likes)
-    blog.likes++
-    likeHandler(blog)
+    console.log('add like')
+    const editedBlog = {
+      id: blog.id,
+      title: blog.title,
+      author: blog.author,
+      url: blog.url,
+      likes: blog.likes +1,
+      user: blog.user.id || blog.user,
+    }
+    dispatch(updateBlog(editedBlog))
+
   }
 
   const [detailShow, setdetailShow] = useState(false)
@@ -29,7 +42,9 @@ const Blog = ({ blog, likeHandler, user, deleteBlog }) => {
     console.log('Remove request ->', blog)
 
     if (window.confirm(`Remove ${blog.title} by ${blog.author}?`)) {
-      deleteBlog(blog)
+      const id = blog.id
+      dispatch(deleteBlog(id))
+      console.log('Remove confirm ->', blog)
     }
   }
 

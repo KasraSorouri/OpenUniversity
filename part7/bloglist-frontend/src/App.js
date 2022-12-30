@@ -10,7 +10,7 @@ import './index.css'
 import Togglable from './components/Togglable'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
-import { createBlog, initialize, removeBlog, updateBlog } from './reducers/blogReducer'
+import { createBlog, initialize } from './reducers/blogReducer'
 
 const App = () => {
 
@@ -21,16 +21,9 @@ const App = () => {
 
   const blogs = useSelector(state => state.blogs)
   console.log('app blogs ->', blogs)
-  // const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  //  const [message, setMassege] = useState(null)
-  //  const [errorMassege, setError] = useState(null)
 
   const addBlogRef = useRef()
-
-  //useEffect(() => {
-  //  blogService.getAll().then((blogs) => setBlogs(blogs))
-  //}, [dispatch])
 
   useEffect(() => {
     const loggedUserJson = window.localStorage.getItem('BlogListAppUser')
@@ -49,9 +42,6 @@ const App = () => {
       setUser(user)
     } catch (e) {
       dispatch(setNotification('Wrong username or password!',3))
-      // setError('Wrong username or password!')
-      // setTimeout(() => setError(null), 5000)
-      // console.log('Error -> ', e)
     }
   }
 
@@ -61,67 +51,20 @@ const App = () => {
   }
 
   const addBlogHandler = async (blog) => {
-    //  console.log('add blog -> ', blog);
 
     try {
-      //const newBlog = await blogService.addBlog(blog)
       addBlogRef.current.toggleVisibility()
 
       console.log('new blog -> ', blog)
       dispatch(createBlog(blog))
-      //setBlogs(blogs.concat(newBlog))
       dispatch(setNotification(`A new blog ${blog.title} by ${blog.author} is added successfully!`,5))
-      // setMassege(
-      //  `A new blog ${newBlog.title} by ${newBlog.author} is added successfully!`
-      // )
-      // setTimeout(() => setMassege(null), 5000)
+
     } catch (e) {
       dispatch(setNotification(e.response.data.error,3))
 
-      // setError(e.response.data.error)
-      // setTimeout(() => setError(null), 5000)
-      //     console.log('Error -> ', e)
     }
   }
 
-  const likeHandler = async (blog) => {
-    console.log('like handler -> ', blog)
-    const editedBlog = {
-      id: blog.id,
-      title: blog.title,
-      author: blog.author,
-      url: blog.url,
-      likes: blog.likes,
-      user: blog.user.id || blog.user,
-    }
-    try {
-      //const updatedBlog = await blogService.editBlog(editedBlog)
-      //setBlogs(
-      // blogs.map((blog) => (blog.id !== updatedBlog.id ? blog : updatedBlog))
-      //)
-      dispatch(updateBlog(editedBlog))
-    } catch (e) {
-      dispatch(setNotification(e.response.data.error,3))
-
-      // setError(e.response.data.error)
-      // setTimeout(() => setError(null), 5000)
-    }
-  }
-
-  const deleteBlog = async (blog) => {
-    console.log('delete from database ->', blog)
-    const id = blog.id
-    try {
-      //await blogService.deleteBlog(blog)
-      //setBlogs(blogs.filter((blog) => blog.id !== id))
-      dispatch(removeBlog(id))
-    } catch (e) {
-      dispatch(setNotification(e.response.data.error,5))
-
-      // setError(e.response.data.error)
-      // setTimeout(() => setError(null), 5000)
-    }
-  }
   let sortedBlogs
   if (blogs.length > 0) {
     sortedBlogs = blogs
@@ -154,9 +97,8 @@ const App = () => {
         <Blog
           key={blog.id}
           blog={blog}
-          likeHandler={likeHandler}
           user={user}
-          deleteBlog={deleteBlog}
+          // deleteBlog={deleteBlog}
         />
       ))}
     </div>

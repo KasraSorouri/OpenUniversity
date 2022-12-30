@@ -31,8 +31,8 @@ const editBlog = async (blog) => {
   return response.data
 }
 
-const deleteBlog = async (blog) => {
-  const blogUrl = `${baseUrl}/${blog.id}`
+const deleteBlog = async (id) => {
+  const blogUrl = `${baseUrl}/${id}`
   const config = {
     headers: { Authorization: token },
   }
