@@ -4,11 +4,11 @@ import blogService from '../services/blogs'
 
 
 const userSlice = createSlice({
-  name: 'users',
-  initialState: {},
+  name: 'logedUser',
+  initialState: null,
   reducers: {
     setUser(state, action) {
-      console.log('set user test ->', action.payload)
+      console.log('set user ->', action.payload)
       return action.payload
     }
   }

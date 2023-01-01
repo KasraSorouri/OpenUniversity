@@ -1,15 +1,21 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../reducers/userReducer'
+import { useNavigate } from 'react-router-dom'
 
-const LoginForm = ({ login }) => {
+const LoginForm = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const handelLogin = (event) => {
     event.preventDefault()
-    login({ username, password })
+    dispatch(loginUser(username, password))
     setPassword('')
     setUsername('')
+    navigate('/')
   }
 
   return (

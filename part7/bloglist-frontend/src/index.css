@@ -19,3 +19,10 @@
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.menu {
+  background-color: rgb(100, 200, 150);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  font-weight: bold;
+}

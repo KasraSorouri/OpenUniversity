@@ -1,12 +1,24 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createBlog } from '../reducers/blogReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const AddBlog = ({ addBlog }) => {
+  const dispatch = useDispatch()
   const [blog, setBlog] = useState({})
 
   const addBlogHandler = (event) => {
     event.preventDefault()
-    addBlog(blog)
-    setBlog({})
+    try {
+      console.log('blog add blog ->', blog)
+      dispatch(createBlog(blog))
+      dispatch(setNotification(`A new blog ${blog.title} by ${blog.author} is added successfully!`, 5))
+      addBlog()
+      setBlog({})
+    } catch (e) {
+      console.log(e)
+      dispatch(setNotification(e, 3))
+    }
   }
 
   return (
@@ -47,7 +59,7 @@ const AddBlog = ({ addBlog }) => {
             }
           />
         </p>
-        <button onClick={addBlogHandler} id="createNewBlog">
+        <button onClick={addBlogHandler} id="createNewBlog" >
           Add Blog
         </button>
       </form>

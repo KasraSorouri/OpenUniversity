@@ -3,34 +3,30 @@ import AddBlog from './AddBlog'
 import Blog from './Blog'
 import Togglable from './Togglable'
 import { Link } from 'react-router-dom'
+//import { useDispatch } from 'react-redux'
+//import { createBlog } from '../reducers/blogReducer'
+//import { setNotification } from '../reducers/notificationReducer'
 
 const Blogs = ({ state }) => {
-  console.log('tempo state ->', state)
-  console.log('Tempo location ->')
+  //const dispatch = useDispatch()
   const blogs = state.state.blogs
   const user = state.state.user
-
-  console.log('Tempo blogs ->', blogs)
   const addBlogRef = useRef()
 
-  const addBlogHandler = async (blog) => {
-
+  const addBlogHandler = async() => {
+    addBlogRef.current.toggleVisibility()
+    /*
     try {
-      addBlogRef.current.toggleVisibility()
-
-      console.log('new blog -> ', blog)
-      /*
+      console.log('blog add blog ->', blog)
       dispatch(createBlog(blog))
-      dispatch(setNotification(`A new blog ${blog.title} by ${blog.author} is added successfully!`,5))
-*/
+      dispatch(setNotification(`A new blog ${blog.title} by ${blog.author} is added successfully!`, 5))
     } catch (e) {
       console.log(e)
-      //dispatch(setNotification(e.response.data.error,3))
+      dispatch(setNotification(e, 3))
 
     }
+    */
   }
-
-
   return (
     <div>
       <Togglable buttonLabel={'Add Blog'} ref={addBlogRef}>

@@ -12,7 +12,7 @@ const BlogPage = (id) => {
   }, [])
   const blogId = useParams(id)
   const blog = useSelector(state => state.blogs.filter(blog => blog.id === blogId.id)[0])
-  const user = useSelector(state => state.user)
+  const user = useSelector(state => state.logedUser)
 
   //console.log('blogPage blog->', blog , 'blogPage blogId ->', blogId)
 
