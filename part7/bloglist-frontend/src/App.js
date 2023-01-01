@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom'
 import Blogs from './components/Blogs'
 import Users from './components/Users'
+import UserPage from './components/UserPage'
 
 
 const App = () => {
@@ -54,7 +55,8 @@ const App = () => {
       </h3>
       <Routes>
         <Route path='/users' element={<Users state={{ state }} />} />
-        <Route  exact path='/'  element={<Blogs state={{ state }} />} />
+        <Route exact path='/' element={<Blogs state={{ state }} />} />
+        <Route path='/users/:id' element={<UserPage user={{ state }} />} />
       </Routes>
     </Router>
   )
