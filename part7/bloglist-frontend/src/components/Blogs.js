@@ -1,12 +1,8 @@
 import React, { useRef } from 'react'
-//import { useDispatch, useSelector } from 'react-redux'
 import AddBlog from './AddBlog'
 import Blog from './Blog'
 import Togglable from './Togglable'
-//import { createBlog } from '../reducers/blogReducer'
-//import { setNotification } from '../reducers/notificationReducer'
-//import { initialize } from '../reducers/blogReducer'
-//import { userInitialize } from '../reducers/userReducer'
+import { Link } from 'react-router-dom'
 
 const Blogs = ({ state }) => {
   console.log('tempo state ->', state)
@@ -41,11 +37,12 @@ const Blogs = ({ state }) => {
         <AddBlog addBlog={addBlogHandler} />
       </Togglable>
       {blogs.map((blog) => (
-        <Blog
-          key={blog.id}
-          blog={blog}
-          user={user}
-        />
+        <Link to={`/blogs/${blog.id}`} key={blog.id} >
+          <Blog
+            blog={blog}
+            user={user}
+          />
+        </Link>
       ))}
     </div>
   )

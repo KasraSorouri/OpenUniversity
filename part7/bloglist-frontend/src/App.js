@@ -14,6 +14,7 @@ import {
 import Blogs from './components/Blogs'
 import Users from './components/Users'
 import UserPage from './components/UserPage'
+import BlogPage from './components/BlogPage'
 
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
         <Route path='/users' element={<Users state={{ state }} />} />
         <Route exact path='/' element={<Blogs state={{ state }} />} />
         <Route path='/users/:id' element={<UserPage user={{ state }} />} />
+        <Route path='/blogs/:id' element={<BlogPage blog={{ state }} />} />
       </Routes>
     </Router>
   )
