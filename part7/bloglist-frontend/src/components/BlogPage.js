@@ -60,6 +60,12 @@ const BlogPage = (id) => {
             Remove
         </button>
       ) : null}
+      <br />
+      <br />
+      <h2>Commnets</h2>
+      {blog.comments.map(comment => (
+        <li key={comment}> {comment} </li>
+      ))}
     </div>
   )
 }
