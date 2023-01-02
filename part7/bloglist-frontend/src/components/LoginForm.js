@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../reducers/userReducer'
 import { useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -19,29 +20,27 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handelLogin}>
+    <Form onSubmit={handelLogin}>
       <h2>Login</h2>
-      <div>
-        username:
-        <input
+      <Form.Group>
+        <Form.Label>username:</Form.Label>
+        <Form.Control
           type="Text"
           value={username}
           name="username"
           onChange={({ target }) => setUsername(target.value)}
         />
-      </div>
-      <div>
-        password:
-        <input
+        <Form.Label>password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           name="password"
           onChange={({ target }) => setPassword(target.value)}
         />
-      </div>
-
-      <button type="submit">login</button>
-    </form>
+      </Form.Group>
+      <br />
+      <Button type="submit">login</Button>
+    </Form>
   )
 }
 

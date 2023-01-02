@@ -27,19 +27,21 @@ const App = () => {
   const state = useSelector(state => state)
 
   return (
-    <Router>
-      <Navigation />
-      <Notification />
-      <br />
-      <br />
-      <Routes>
-        <Route path='/users' element={<Users state={{ state }} />} />
-        <Route exact path='/' element={<Blogs state={{ state }} />} />
-        <Route path='/users/:id' element={<UserPage user={{ state }} />} />
-        <Route path='/blogs/:id' element={<BlogPage blog={{ state }} />} />
-        <Route path='/login' element={<LoginForm />} />
-      </Routes>
-    </Router>
+    <div className='container'>
+      <Router>
+        <Navigation />
+        <Notification />
+        <br />
+        <br />
+        <Routes>
+          <Route path='/users' element={<Users state={{ state }} />} />
+          <Route exact path='/' element={<Blogs state={{ state }} />} />
+          <Route path='/users/:id' element={<UserPage user={{ state }} />} />
+          <Route path='/blogs/:id' element={<BlogPage blog={{ state }} />} />
+          <Route path='/login' element={<LoginForm />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 

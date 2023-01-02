@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../reducers/userReducer'
+import { AppBar, Toolbar, Button, IconButton, Box } from '@mui/material'
 
 const Navigation = () => {
   const dispatch = useDispatch()
@@ -13,21 +14,25 @@ const Navigation = () => {
     dispatch(setUser(null))
   }
 
-  const padding = {
-    padding: 5
-  }
-
-
   return (
-    <div className='menu'>
-      <Link style={padding} to="/">Blogs</Link>
-      <Link style={padding} to="/users">Users</Link>
-      {(!user) ? <button onClick={() => navigate('/login')}>Login</button> :
-        <span style={padding}>
-          {user.name} logged in
-          <button onClick={handelLogout}>logout</button>
-        </span>}
-    </div>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="menu">
+        </IconButton>
+        <Button color="inherit" component={Link} to='/'>
+          Blogs
+        </Button>
+        <Button color="inherit" component={Link} to='/users'>
+          Users
+        </Button>
+        <Box sx={{ flexGrow: 1 }} />
+        {(!user) ? <Button color="inherit" onClick={() => navigate('/login')}>Login</Button> :
+          <span>
+            {user.name} logged in
+            <Button color="inherit" onClick={handelLogout}>logout</Button>
+          </span>}
+      </Toolbar>
+    </AppBar>
   )
 }
 

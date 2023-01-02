@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { addComment, initialize } from '../reducers/blogReducer'
 import { updateBlog, deleteBlog } from '../reducers/blogReducer'
 import { setNotification } from '../reducers/notificationReducer'
+import { Form, Button, Col, Row } from 'react-bootstrap'
 
 const BlogPage = (id) => {
   const dispatch = useDispatch()
@@ -70,36 +71,40 @@ const BlogPage = (id) => {
       <a href={`${blog.url}`}>{blog.url}</a>
       <br />
       <span id="likes">{blog.likes}</span> {(blog.likes === 1) ? <span>like</span> :<span>likes</span>}
-      <button onClick={addLike} id="like">
+      <Button onClick={addLike} id="like" size="sm" >
           like
-      </button>
+      </Button>
       <br/>
       <strong>Added by {blog.user.name}</strong>
       <br/>
       {blog.user.id === user.id ? (
-        <button onClick={() => removeBlog(blog)} id="delete">
+        <Button onClick={() => removeBlog(blog)} id="delete">
             Remove
-        </button>
+        </Button>
       ) : null}
       <br />
       <br />
       <h2>Commnets</h2>
-      <form onSubmit={addComment}>
-        <input
-          type="text"
-          value={comment || ''}
-          name="commnet"
-          placeholder="commnet"
-          onChange={({ target }) =>
-            setComment( target.value )
-          }
-        />
-        <button onClick={addCommentHandler} id="addCommnet" >
-          Add Commnet
-        </button>
-      </form>
-
-
+      <Form onSubmit={addComment}>
+        <Row>
+          <Col>
+            <Form.Control
+              type="text"
+              value={comment || ''}
+              name="commnet"
+              placeholder="commnet"
+              onChange={({ target }) =>
+                setComment( target.value )
+              }
+            />
+          </Col>
+          <Col>
+            <Button onClick={addCommentHandler} id="addCommnet" >
+              Add Commnet
+            </Button>
+          </Col>
+        </Row>
+      </Form>
       {blog.comments.map(comment => (
         <li key={comment}> {comment} </li>
       ))}
