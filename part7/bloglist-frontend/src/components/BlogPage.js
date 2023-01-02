@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { initialize } from '../reducers/blogReducer'
+import { addComment, initialize } from '../reducers/blogReducer'
 import { updateBlog, deleteBlog } from '../reducers/blogReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const BlogPage = (id) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [comment, setComment] = useState('')
+
   useEffect(() => {
     dispatch(initialize())
   }, [])
@@ -23,7 +26,8 @@ const BlogPage = (id) => {
       title: blog.title,
       author: blog.author,
       url: blog.url,
-      likes: blog.likes +1,
+      comments: blog.comments,
+      likes: blog.likes + 1,
       user: blog.user.id || blog.user,
     }
     dispatch(updateBlog(editedBlog))
@@ -37,6 +41,23 @@ const BlogPage = (id) => {
       dispatch(deleteBlog(id))
       navigate('/')
       console.log('Remove confirm ->', blog)
+    }
+  }
+
+  const addCommentHandler = (event) => {
+    event.preventDefault()
+    if (comment.length > 1) {
+      try {
+        console.log('blog add blog ->', comment)
+        dispatch(addComment(blog.id, comment))
+        dispatch(setNotification(`A new commnet ${comment} is added for blog ${blog.title}`, 5))
+        setComment('')
+      } catch (e) {
+        console.log(e)
+        dispatch(setNotification(e, 3))
+      }
+    } else {
+      dispatch(setNotification('Comment shoud not be empty!',5))
     }
   }
 
@@ -63,6 +84,22 @@ const BlogPage = (id) => {
       <br />
       <br />
       <h2>Commnets</h2>
+      <form onSubmit={addComment}>
+        <input
+          type="text"
+          value={comment || ''}
+          name="commnet"
+          placeholder="commnet"
+          onChange={({ target }) =>
+            setComment( target.value )
+          }
+        />
+        <button onClick={addCommentHandler} id="addCommnet" >
+          Add Commnet
+        </button>
+      </form>
+
+
       {blog.comments.map(comment => (
         <li key={comment}> {comment} </li>
       ))}
