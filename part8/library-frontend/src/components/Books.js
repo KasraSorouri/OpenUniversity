@@ -1,9 +1,18 @@
+import { useQuery } from '@apollo/client'
+import { ALL_BOOKS } from '../queries'
+
 const Books = (props) => {
+
+  let books = []
+
+  const result = useQuery(ALL_BOOKS)
+  if (result.data) {
+    books = books.concat(result.data.allBooks)
+  }
+
   if (!props.show) {
     return null
   }
-
-  const books = []
 
   return (
     <div>
@@ -12,7 +21,7 @@ const Books = (props) => {
       <table>
         <tbody>
           <tr>
-            <th></th>
+            <th>title</th>
             <th>author</th>
             <th>published</th>
           </tr>
