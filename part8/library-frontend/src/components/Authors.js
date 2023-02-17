@@ -3,6 +3,7 @@ import { ALL_AUTHORS } from '../queries'
 import SetBirthYear from './SetBirthYear'
 
 const Authors = (props) => {
+  const token = localStorage.getItem('library-user-token')
   if (!props.show) {
     return null
   }
@@ -33,7 +34,7 @@ const Authors = (props) => {
           ))}
         </tbody>
       </table>
-      <SetBirthYear authors={authors} />
+      { (token) ? (<SetBirthYear authors={authors} />) : null }
     </div>
   )
 }
