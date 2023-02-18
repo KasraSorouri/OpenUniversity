@@ -76,6 +76,9 @@ const typeDefs = `
       username: String!
       password: String!
     ): Token
+    editUser(
+      favouriteGenre: String!
+    ): User
   }
 `
 
@@ -191,6 +194,35 @@ const resolvers = {
             }
           })
         })
+    },
+    editUser: async (root, args, context) => {
+      const currentUser = context.currentUser
+     
+      if (!currentUser) {
+        throw new GraphQLError('not authenticated', {
+          extensions: {
+            code: 'BAD_USER_INPUT',
+          }
+        })
+      }
+      const user = await User.findById(currentUser._id)
+
+      if(!user) {
+        return null
+      }
+      user.favouriteGenre = args.favouriteGenre 
+      try {
+        await user.save()
+      } catch(error) {
+        throw new GraphQLError('Saving User failed', {
+          extensions: {
+            code: 'BAD_USER_INPUT',
+            invalidArgs: args.name,
+            error
+          }
+        })
+      }
+      return user
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username })

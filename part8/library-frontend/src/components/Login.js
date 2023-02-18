@@ -24,7 +24,6 @@ const LoginForm = ({ setToken, show , setPage }) => {
   const submit = async (event) => {
     event.preventDefault()
     login({ variables: { username, password } })
-    console.log('result ->',result)
     setUsername('')
     setPassword('')
     setPage('authors')
