@@ -1,20 +1,34 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { ALL_BOOKS } from '../queries'
 
 const Books = (props) => {
   let books = []
+  let booksToShow = []
   let genres = []
+  const [ genre, setGenre ] = useState('')
+  let variables = {}
+  console.log('selected genre ->', genre)
+  console.log('variables ->', variables)
+
+  if ( genre ) {
+    variables.genre = genre
+  }
+  const filteredResult = useQuery(ALL_BOOKS,{ variables: variables })
+
+  if (filteredResult.data) {
+    booksToShow = books.concat(filteredResult.data.allBooks)
+  }
 
   const result = useQuery(ALL_BOOKS)
 
-  const [ booksToShow, setBooksToShow ] = useState([])
   if (result.data) {
     books = books.concat(result.data.allBooks)
   }
-  useEffect(() => {
-    setBooksToShow(books)
-  },[result])
+
+
+  //const [ booksToShow, setBooksToShow ] = useState([])
+
 
   if (books) {
     books.map(book => {
@@ -29,7 +43,8 @@ const Books = (props) => {
   }
 
   const filter = (genre) => {
-    setBooksToShow(books.filter(book => book.genres.includes(genre)))
+    setGenre(genre)
+    // setBooksToShow(books.filter(book => book.genres.includes(genre)))
   }
 
   if (!props.show) {

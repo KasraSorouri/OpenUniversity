@@ -3,14 +3,15 @@ import { ALL_BOOKS } from '../queries'
 
 const Recommend = ({ show, genre }) => {
   let books = []
-  const result = useQuery(ALL_BOOKS)
-  console.log('recommend genre ->', genre)
+  let variables = {}
+  if ( genre ) {
+    variables.genre = genre
+  }
 
+  const result = useQuery(ALL_BOOKS,{ variables: variables })
   if (result.data) {
     books = books.concat(result.data.allBooks)
   }
-
-  const booksToShow = books.filter(book => book.genres.includes(genre))
 
   if (!show) {
     return null
@@ -27,7 +28,7 @@ const Recommend = ({ show, genre }) => {
             <th>author</th>
             <th>published</th>
           </tr>
-          {booksToShow.map((a) => (
+          {books.map((a) => (
             <tr key={a.title}>
               <td>{a.title}</td>
               <td>{a.author.name}</td>
