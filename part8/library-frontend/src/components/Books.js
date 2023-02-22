@@ -8,8 +8,8 @@ const Books = (props) => {
   let genres = []
   const [ genre, setGenre ] = useState('')
   let variables = {}
-  console.log('selected genre ->', genre)
-  console.log('variables ->', variables)
+  //console.log('selected genre ->', genre)
+  //console.log('variables ->', variables)
 
   if ( genre ) {
     variables.genre = genre

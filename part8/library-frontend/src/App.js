@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useApolloClient } from '@apollo/client'
-import { useQuery } from '@apollo/client'
+import { useQuery, useSubscription } from '@apollo/client'
 
-import { ME } from './queries'
+import { BOOK_ADDED, ME } from './queries'
 
 import Authors from './components/Authors'
 import Books from './components/Books'
@@ -18,6 +18,12 @@ const App = () => {
   const client = useApolloClient()
   let genre
 
+  useSubscription(BOOK_ADDED,{
+    onData: ({ data }) => {
+      window.alert(`new Book ${data.data.bookAdded.title} by ${data.data.bookAdded.author.name} is added`)
+    }
+  })
+
   let user = useQuery(ME)
 
   if (user.data) {
@@ -25,9 +31,8 @@ const App = () => {
       genre = user.data.me.favouriteGenre
     }
   }
-  console.log('user ->', user)
-
-  console.log('genre ->', genre)
+  //console.log('user ->', user)
+  //console.log('genre ->', genre)
 
   const logout = () => {
     setToken(null)
