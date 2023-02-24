@@ -7,6 +7,40 @@ const jwt = require('jsonwebtoken')
 const Author = require('../models/author')
 const Book = require('../models/book')
 const User = require('../models/user')
+const DataLoader = require('dataloader')
+const author = require('../models/author')
+
+
+
+const batchAutors = async (keys) => {
+  console.log('*** keys *** ->', keys)
+  
+  const bookCount = await Book.aggregate([
+    {
+      $group:{
+        _id: "$author",
+        count:{ $count: { }}
+      }
+    }
+  ])
+  console.log(' **** *  * *  * **** *book count ->', bookCount)
+  bookCount.map(book => console.log('book **** -> ', book._id , ' ** ', typeof(book._id)))
+  //console.log('book count  test *****->', )
+  // const result = keys.map(key =>authors.find( author => author.id === key))
+  const result = keys.map(key =>{
+    console.log(' *** key *** ->', key , ' ** ', typeof key)
+    const test = bookCount.find(bc => bc._id === key._id)
+    console.log(' *** test *** ->', test)
+
+    return test
+  })
+  console.log('loader result   ->', result)
+
+  return result
+}
+
+const authorLoader = new DataLoader(keys => batchAutors(keys))
+
 
 const resolvers = {
   Query: {
@@ -23,13 +57,22 @@ const resolvers = {
       const books = await Book.find(searchParams).populate('author')
       return books
     },
-    allAuthors: async () => Author.find({}),
+    allAuthors: async () => {
+      console.log('Author find')
+      return await Author.find({})
+    },
     me: (root, args, context) => {
       return context.currentUser
     },
   },
   Author: {
-    books: async (root) => Book.countDocuments({ author: root })
+    books: async (root) =>{
+      //console.log('**/* root ->', root)
+      //console.log('***** author key req ->', root._id)
+      //authorLoader.load(root._id)
+      //return Book.countDocuments({ author: root })
+      return authorLoader.load(root._id)
+    }
   },
   Mutation: {
     addBook: async (root, args, context) => {
