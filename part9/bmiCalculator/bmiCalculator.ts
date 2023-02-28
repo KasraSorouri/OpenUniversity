@@ -1,6 +1,19 @@
+interface BmiInputs {
+  height: number;
+  weight: number;
+};
 
-const calculateBmi = (height: number, weight: number): string => {
-  const bmi = weight / ((height / 100) ^ 2);
+const parseBmiArguments = (args: string[]): BmiInputs => {
+  if ( args.length < 4 ) throw new Error('Not enough arguments');
+  return {
+    height: Number(args[2]),
+    weight: Number(args[3]),
+  }
+};
+
+const calculateBmi = (height: number, weight: number): any => {
+  const bmi = weight / Math.pow(height / 100 , 2);
+  
   if ( bmi < 16 ) {
     return 'Underweight (Severe thinness)';
   } else if ( bmi >= 16 && bmi < 17 ) {
@@ -19,5 +32,5 @@ const calculateBmi = (height: number, weight: number): string => {
     return 'Obese (Class III)';
   }
 };
-
-console.log(calculateBmi(180, 74));
+const { height, weight } = parseBmiArguments(process.argv)
+console.log(calculateBmi(height, weight));

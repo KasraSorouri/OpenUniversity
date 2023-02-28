@@ -6,17 +6,21 @@ interface Inputs {
 const parseArguments = (args: string[]): Inputs => {
   if ( args.length < 4 ) throw new Error('Not enough arguments');
   return {
-    hours: args.slice(2, args.length-1).map(arg => Number(arg)),
-    target: Number(args[(args.length-1)])
+    hours: args.slice(3).map(arg => Number(arg)),
+    target: Number(args[2])
   }
 }
+interface Rate {
+  rate: number;
+  description: string ;
+};
 
-const rating = (target: number, avg: number) => {
+const rating = (target: number, avg: number): Rate => {
   if( avg >= target ) {
     return { rate:1 , description: 'well done!' }
   } else if ( avg < target && avg >= 0.6 * target ) {
     return { rate:2 , description: 'not too bad but could be better' }
-  } else if ( avg < 0.6 * target ) {
+  } else {
     return { rate:3 , description: 'you should try harder' }
   }
 }
