@@ -38,9 +38,9 @@ interface Result {
 }
 
 const exerciseCalculator = (exercises: number[], target: number): Result  => {
-  if ( exercises.length < 1 || !target) throw new Error('parameters missing')
+  if ( exercises.length < 1 || !target) throw new Error('parameters missing');
   const avgExercise = (exercises.reduce((s, h) => s + h))/exercises.length;
-  if (!avgExercise || !Number(target)) throw new Error('malformatted parameters')
+  if (!avgExercise || !Number(target)) throw new Error('malformatted parameters');
   const report = {
     periodLength: exercises.length,
     trainingDays: exercises.filter(h => h > 0).length,
