@@ -1,3 +1,4 @@
+/*
 interface Inputs {
   hours: number[];
   target:number;
@@ -10,6 +11,7 @@ const parseArguments = (args: string[]): Inputs => {
     target: Number(args[2])
   };
 };
+*/
 interface Rate {
   rate: number;
   description: string ;
@@ -17,11 +19,11 @@ interface Rate {
 
 const rating = (target: number, avg: number): Rate => {
   if( avg >= target ) {
-    return { rate:1 , description: 'well done!' };
+    return { rate: 3 , description: 'well done!' };
   } else if ( avg < target && avg >= 0.6 * target ) {
-    return { rate:2 , description: 'not too bad but could be better' };
+    return { rate: 2 , description: 'not too bad but could be better' };
   } else {
-    return { rate:3 , description: 'you should try harder' };
+    return { rate: 1 , description: 'you should try harder' };
   }
 };
 
@@ -36,7 +38,9 @@ interface Result {
 }
 
 const exerciseCalculator = (exercises: number[], target: number): Result  => {
+  if ( exercises.length < 1 || !target) throw new Error('parameters missing')
   const avgExercise = (exercises.reduce((s, h) => s + h))/exercises.length;
+  if (!avgExercise || !Number(target)) throw new Error('malformatted parameters')
   const report = {
     periodLength: exercises.length,
     trainingDays: exercises.filter(h => h > 0).length,
@@ -48,7 +52,8 @@ const exerciseCalculator = (exercises: number[], target: number): Result  => {
   };
   return report;
 };
-
+/*
 const { hours, target } = parseArguments(process.argv);
 console.log(exerciseCalculator(hours, target));
-
+*/
+export { exerciseCalculator };
