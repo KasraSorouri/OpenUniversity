@@ -24,6 +24,7 @@ const AddDiary = ({ createDiary }: {createDiary(object:NewDiary):void}) => {
 
   return(
     <div>
+      <h1>Add new entry</h1>
       <form onSubmit={addDiary} >
         Date:
         <input 

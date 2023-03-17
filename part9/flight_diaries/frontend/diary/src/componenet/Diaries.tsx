@@ -9,6 +9,7 @@ const Diaries = ({ diaries } : { diaries : DiaryType[] }) => {
 
   return (
     <div>
+      <h1>Diary entries</h1>
       {diaries.map(diary => (
         <Diary key={diary.id}   diary={diary} />
       ))}
