@@ -3,12 +3,13 @@ import { NewDiary } from "../type";
 
 const AddDiary = ({ createDiary }: {createDiary(object:NewDiary):void}) => {
   const [ date, setDate ] = useState('');
-  const [ weather, setWeather ] = useState('');
-  const [ visibility, setVisibility ] = useState('');
+  const [ weather, setWeather ] = useState('sunny');
+  const [ visibility, setVisibility ] = useState('great');
   const [ comment, setComment ] = useState('');
 
   const addDiary = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    
     const object = {
       date : date,
       weather: weather,
@@ -18,8 +19,8 @@ const AddDiary = ({ createDiary }: {createDiary(object:NewDiary):void}) => {
     createDiary(object);
     setComment('');
     setDate('');
-    setVisibility('');
-    setWeather('');
+    setVisibility('great');
+    setWeather('sunny');
   }
 
   return(
@@ -28,22 +29,85 @@ const AddDiary = ({ createDiary }: {createDiary(object:NewDiary):void}) => {
       <form onSubmit={addDiary} >
         Date:
         <input 
+          type='date'
           id='date'
           value={date}
           onChange={(event) => setDate(event.target.value)}
         />
         <br />Weather:
         <input 
-          id='weather'
-          value={weather}
-          onChange={(event) => setWeather(event.target.value)}
+          type='radio'
+          id='sunny'
+          name='weather'
+          value='sunny'
+          onChange={(event)=> setWeather(event.target.value)}
         />
+        <label htmlFor="sunny">sunny</label>
+        <input 
+          type='radio'
+          id='rainy'
+          name='weather'
+          value='rainy'
+          onChange={(event)=> setWeather(event.target.value)}
+        />
+        <label htmlFor="rainy">rainy</label>
+        <input 
+          type='radio'
+          id='cloudy'
+          name='weather'
+          value='cloudy'
+          onChange={(event)=> setWeather(event.target.value)}
+        />
+        <label htmlFor="cloudy">cloudy</label>
+        <input 
+          type='radio'
+          id='stormy'
+          name='weather'
+          value='stormy'
+          onChange={(event)=> setWeather(event.target.value)}
+        />
+        <label htmlFor="stormy">stormy</label>
+        <input 
+          type='radio'
+          id='windy'
+          name='weather'
+          value='windy'
+          onChange={(event)=> setWeather(event.target.value)}
+        />
+        <label htmlFor="windy">windy</label>
         <br />visibility:
         <input 
-          id='visibility'
-          value={visibility}
-          onChange={(event) => setVisibility(event.target.value)}
+          type='radio'
+          id='great'
+          name='visibility'
+          value='great'
+          onChange={(event)=> setVisibility(event.target.value)}
         />
+        <label htmlFor="great">great</label>
+        <input 
+          type='radio'
+          id='good'
+          name='visibility'
+          value='good'
+          onChange={(event)=> setVisibility(event.target.value)}
+        />
+        <label htmlFor="good">good</label>
+        <input 
+          type='radio'
+          id='ok'
+          name='visibility'
+          value='ok'
+          onChange={(event)=> setVisibility(event.target.value)}
+        />
+        <label htmlFor="ok">ok</label>
+        <input 
+          type='radio'
+          id='poor'
+          name='visibility'
+          value='poor'
+          onChange={(event)=> setVisibility(event.target.value)}
+        />
+        <label htmlFor="poor">poor</label>
         <br />Comment:
         <input 
           id='comment'
